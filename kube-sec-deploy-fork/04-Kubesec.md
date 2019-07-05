@@ -38,7 +38,7 @@ curl --silent \
 https://kubesec.io/
 }
 kubesec ./test/deployment.yaml
-```{{copy}}
+```{{execute}}
 > all sensitive configuration should live in `secrets` -  never leak configuration to a remote service.
 1. The problem is `containers[] .securityContext .privileged == true` - running a privileged pod.  
 Although this is dangerous, perhaps we have an "urgent business requirement" (:facepalm:). Let's edit the admission controller to allow an insecure deployment:  
