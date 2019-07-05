@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "demo-api"
+  labels:
+    app: "demo-api"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "demo-api"
+  template:
+    metadata:
+      labels:
+        app: "demo-api"
+    spec:
+      containers:
+      - name: demo-api
+        image: "127.0.0.1:30002/library/demo-api:vulnerable"
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 9000
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "demo-api"
+  labels:
+    app: "demo-api"
+spec:
+  ports:
+    - protocol: TCP
+      port: 9000
+      nodePort: 30009
+  selector:
+    app: "demo-api"
+  type: NodePort

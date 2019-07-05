@@ -1,0 +1,155 @@
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: imagepolicies.securityenforcement.admission.cloud.ibm.com
+  labels:
+    app: portieris
+spec:
+  group: securityenforcement.admission.cloud.ibm.com
+  names:
+    kind: ImagePolicy
+    listKind: ImagePolicyList
+    plural: imagepolicies
+    singular: imagepolicy
+  scope: Namespaced
+  version: v1beta1
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: clusterimagepolicies.securityenforcement.admission.cloud.ibm.com
+  labels:
+    app: portieris
+spec:
+  group: securityenforcement.admission.cloud.ibm.com
+  names:
+    kind: ClusterImagePolicy
+    listKind: ClusterImagePolicyList
+    plural: clusterimagepolicies
+    singular: clusterimagepolicy
+  scope: Cluster
+  version: v1beta1
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: portieris-certs
+  namespace: default
+type: Opaque
+data:
+  serverCert.pem: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUM5VENDQWQyZ0F3SUJBZ0lKQU5wSzI2YjlJbks5TUEwR0NTcUdTSWIzRFFFQkJRVUFNQmN4RlRBVEJnTlYKQkFNTURIQnZjblJwWlhKcGMxOWpZVEFnRncweE9UQTFNVE14TmpFeE1qQmFHQTh5TWprek1ESXlOVEUyTVRFeQpNRm93SURFZU1Cd0dBMVVFQXd3VmNHOXlkR2xsY21sekxtUmxabUYxYkhRdWMzWmpNSUlCSWpBTkJna3Foa2lHCjl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUF2azVwK1QyU1kxQXJTZGNhWm9tUURXVndSZnVvT1Iva056ekcKQnlDcHJILzFXaHlUVkYvMkxhbEMxMllNZTJZVU1tc2llbGFYZGFCOUxtbzF0TUdtTWR0MkZkYzJ4SmhOZUdLbwpNNjJSZ3JzTTJqWWlzc3dzekYwYWFCcnJ6ZXZzWjc1VXlSWDFrMjM3UlpENGxKTk1kOGhLNGZweFE1eXRCOVMxCjArNXU0b2tvTHN3Smw0MW1XR2hFcFAzQklMeVpzc3ZVTDl4aXFSY01mbkNKVkpEdmJibTdvODZycTZUOEI5MlQKbzk0SXBrclpHSy9GbWVxUFJkUVFyRU9XQTF3clFIdWN3b25uK1BqRzcxNEpSSmRmVysrYldDV3ZlVEhLUzF1Mwo5bVljeWRXUXRnTVNJVGw0WWRCeHlFRlpoZzkzRG0vSnVqZGtMVjBkVUhkcUVqMmppd0lEQVFBQm96a3dOekFKCkJnTlZIUk1FQWpBQU1Bc0dBMVVkRHdRRUF3SUY0REFkQmdOVkhTVUVGakFVQmdnckJnRUZCUWNEQWdZSUt3WUIKQlFVSEF3RXdEUVlKS29aSWh2Y05BUUVGQlFBRGdnRUJBTEhldmdZcmJZbFdMcnpYbUlhamRXb0orYlJ2elBVUApFbDM3QjZndGtOak4zcHNUVlc1Ty9ibDJybzlxZlNiUjdBR0IxOE5OYmp2TE5paWo0MnZwaG9xSlAyVVIzWVd5CmdkWEE2clVSOVNQUFg0c1lXNVZ4dmx3SFZJNUxTQS9wL0owZGw0N25DWDZwNjlOOER0U0Q2WXhxNWhWa2NoRjAKb0x6MEh2dnRCY096MkQvV2hhdXl0SWEvd2hQQkVBNmdqZFFOUCtHSjdicnlianY3VDFkZFhmOFBBZDVXOFpURgp2czNpVFByQUZwcm9nK3JXRlVRTjlwMkh2dXRaaEc3ZHg2cWg2dktlRGpoVWozQlVkVkdQWlhMWlZxcktOSEVCCk9ERWI1a3NURlE4SzljSm1PdlV6ZndVdkVqeTI3WFFWdmU2M05NRzhRVm9iK3dObUhyM1c0bms9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+  serverKey.pem: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb2dJQkFBS0NBUUVBdms1cCtUMlNZMUFyU2RjYVpvbVFEV1Z3UmZ1b09SL2tOenpHQnlDcHJILzFXaHlUClZGLzJMYWxDMTJZTWUyWVVNbXNpZWxhWGRhQjlMbW8xdE1HbU1kdDJGZGMyeEpoTmVHS29NNjJSZ3JzTTJqWWkKc3N3c3pGMGFhQnJyemV2c1o3NVV5UlgxazIzN1JaRDRsSk5NZDhoSzRmcHhRNXl0QjlTMTArNXU0b2tvTHN3SgpsNDFtV0doRXBQM0JJTHlac3N2VUw5eGlxUmNNZm5DSlZKRHZiYm03bzg2cnE2VDhCOTJUbzk0SXBrclpHSy9GCm1lcVBSZFFRckVPV0Exd3JRSHVjd29ubitQakc3MTRKUkpkZlcrK2JXQ1d2ZVRIS1MxdTM5bVljeWRXUXRnTVMKSVRsNFlkQnh5RUZaaGc5M0RtL0p1amRrTFYwZFVIZHFFajJqaXdJREFRQUJBb0lCQUJGL2tFcjBtR005V2QyZQpRN1V0N09ydWF0WmtmMkZSUjJDMDI5aUg3bElJS2YweEozTFlxQUFtMGhpUUw1R2hIelpMbDQzOExFMEtocmdmCjEvUlk0Zmt2bnJuL1llL051VUhhZ0hEUUF0TXNjOUFVcmpnV2dnQUFoNDhPK3FPaWo4Z3lQZ1dIV1Y5Rys1VzMKOE1Ob2o5MXJzMGI0Q2pZWFQrbXFhMVdqVk5yTGJTSGEwOTlqR3UxODZpMjRKSzJmcmd6NEFnN2V4c2RGbXVDNgpTSlR1blJ6d0lsNjBMdkswL3BpRkJ0RWI1eXZaZWlCRTcvVlREZlJjWTFSZ1dzRXlqQnFObWVYMWpuNGkzbzExCndOREhrckN0Tm1weTBnMjhqU0haRmdYQUtRYy9lY3h6Zm40U0VYVlUyZTBVZ1JyUHRkSE9XMVJLeXo0M3o5VGkKa2ltOWVLRUNnWUVBNVRPZjVJV3k0aFVEQ2dibDZMYXRJbUlyV2N0dEpMb2dUZFJlNzc1OHhPOUpIcEdGR2ErUwo5YnJ6ZW1sV3k4Wk93Q3ZxWm81U3o0UEFWaG8xYTJCRW1qdVZ6M2RiQm9DNVhIbld3aGFWajBqdXk0TGpuRk9CCm9ybFdWR3EzdVZVZGpXKzJuUTczUGN3ZVZpUTZnRmowMi8zejJtVWsyaFZ4amNWdDZGTjMrVWtDZ1lFQTFJNlcKcytNVXloUlUyRWt6QkcrbkpJZ0Zpd0lZS3VZeU5zcDU0YXVHTC9OaVNLcForN3A2MFBhRlc2cGxsR1pKZ0d4WAo3UzVNN09aQjlvWUE4dXRCMHVmRVpEWGhTZEhwdmVHQmt0eHNqVEl3aEE3N1hNblFxTWtSdHR4ajdRb21yWXhCClNXcndRZXJSVWx4M3dsbUJqb0tWdDFBTjR0Ykt3eFpjNWVmcEtqTUNnWUFMUVJldXp1blR0QmhzRzU2YWFLM2oKckZKWW5HYUZrU1lZN0Q2bEl3TlpZQzZFODd4SFlKbWt1ME5OVlhMUG1yTXZPSGpRQkZrSW0zMk1QTWsydG9sbgowVmt2MExxRmZUaWMwOWE1dlFZbS9Qdk12bWFTdkg3M0VJYXVxbmJQQU9Ec212bXFpSnVYU3ppS0hrbEpHQlVkCjRFQmpEdWhhVlFjNFlPTmVyd3FMRVFLQmdEUzBMbFhvUm0xYzRUVEg0YWlGN3RHMkVIbkpTU2pKNzBWNnF3SHoKdjgvLzd5ekpZSXAwVUtPam5LbC85TFA1TU54eEFOUkVtTHBjMVpwRTI5TmYxZkJ2bTFpbHEzamNYYkxCU1ptYQpvaWZZZkFNaW05MEVCWUwwYURvSko1WE00STVEcXFTRHFaTU9vRnhscFNSQmdVaE94TVN4U3VBbUZoeU5YUGQ4CnEyblZBb0dBTkNra01kM1crTTdMYjV3UlpLeGdIWjBzdmlFYnB5dklsZkJCVmlGcm1GRVNYSThHMkt6a3NCYlEKNTZDcjFsWlgzS0FMU3RGelNKbGdoV2l4Rm9jMWtzK1I1U3o5UnlSUkJBVlA4b0Y5NEEvZHVBVU5wdk5XODRMWApMdVB2ZzV1NVJ6MHJUOHdNMU01QVVoMkhyUVlUSWZmNUVockY3Z21yTTd5a2xoaUllb0U9Ci0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
+  ca.pem: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUNyRENDQVpRQ0NRRFhBUWF4TEZJM0JqQU5CZ2txaGtpRzl3MEJBUXNGQURBWE1SVXdFd1lEVlFRRERBeHcKYjNKMGFXVnlhWE5mWTJFd0lCY05NVGt3TlRFek1UWXhNVEU1V2hnUE1qSTVNekF5TWpVeE5qRXhNVGxhTUJjeApGVEFUQmdOVkJBTU1ESEJ2Y25ScFpYSnBjMTlqWVRDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDCkFRb0NnZ0VCQUxrOG9KWWRQNEdoSUJ2Z1NRRitNVnRoL20xMitxaTY5TFpKNW5XeFdONDAycm1iYmxDUXFSWmkKNGlqbkFuOUlwa3phTmJydHErZU1KSzM1OWZKcjA0Q0JWMERISWFHNnBwOUgrTEZBV3RuazB4RTBxZUNmZnRpYgpQSWN5U2hkL24wZTVFNzFCdDRPQTFaZC93TGZFaGVSYWJid3YvUUhkR1UwU3R4U3QxRXVwcjJMekxrZktLLzI1ClJ6SEk5MHFJMDRKUGl6ODVzY1p5V05wQmNhNjJvUlRSMjE1Rk4xcVFKMXZPWW45UGYyTTJUeWV3Tkd1ajNYb1UKNUlkK3pxclVMVHJaN3h1RW9pdFczUGkwSXFRcmFsWXVZRXdkdjN2WG1vcVY1L2Z6d3JRQU9tdktYdjlibmRTaQo0dUtIVWsrWWt5NDNwSURCZU5IYjMzR2I2Y0Y5b004Q0F3RUFBVEFOQmdrcWhraUc5dzBCQVFzRkFBT0NBUUVBCkpwcG9xS3J2NGxtWUhRdUt6em9yZ085OU9NVW1ZR1hQTW1iS3NXN2t2Kzd6aldub2RkbUNxN05UZzZXRDFZVDUKZFZZZWc5T2ZsZElXWlk4S1FudmJsTm1TbE5MdUtZcDd0UVNKdlFOYkJNYk1JUzQyR01EUDhaK2lJczJkR0F6cQpwNTQ2U2ZWWURoK2N4MW1jYjJqbFhUb0ozY01GUUlwc1B5OUZxOCtIK0Yrc1RTNzBuSWZRRUVmSFQ2WVZSbWtpCkpBK3NpWkFZMWRHRmYxQUJWbFhWOEF6V29CQ1FMU2ZPQlBwY3Vpc2g1U0lCWkNQWU9SUThnWGRHYnNic1loYSsKbGs0Z1V3eENHVG0vZWtuUlUrSGM4dzN6TzNOdlNRWkN0RDhWb1dGY3dnbGRYQmJUOEVrcnJ1cGt0TkxZYXJTQgpHUjRaL2M5K1ZUVWpOV2MrUnoyV1JBPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+---
+apiVersion: securityenforcement.admission.cloud.ibm.com/v1beta1
+kind: ClusterImagePolicy
+metadata:
+  name: portieris-default-cluster-image-policy
+spec:
+  repositories:
+    # This policy prevents Portieris from blocking itself
+    - name: "docker.io/ibmcom/portieris:*"
+      policy:
+    # This policy allows Portieris to use Hyperkube to configure your cluster. This policy must exist if you uninstall Portieris.
+    - name: "quay.io/coreos/hyperkube:v1.7.6_coreos.0"
+      policy:
+    # This enforces that all images deployed to this cluster pass trust
+    # IMPORTANT: Review this policy and replace it with one that meets your requirements.
+    - name: "*"
+      policy:
+        trust:
+          enabled: true
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: portieris
+  namespace: default
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: portieris
+  labels:
+    app: portieris
+rules:
+- apiGroups: ["securityenforcement.admission.cloud.ibm.com"]
+  resources: ["imagepolicies", "clusterimagepolicies"]
+  verbs: ["get", "watch", "list", "create"]
+- apiGroups: ["apiextensions.k8s.io"]
+  resources: ["customresourcedefinitions"]
+  verbs: ["get", "create", "delete"]
+- apiGroups: ["admissionregistration.k8s.io"]
+  resources: ["validatingwebhookconfigurations", "mutatingwebhookconfigurations"]
+  verbs: ["get", "create", "delete"]
+- apiGroups: [""]
+  resources: ["secrets", "serviceaccounts"]
+  verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: admission-portieris-webhook
+  labels:
+    app: portieris
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: portieris
+subjects:
+  - kind: ServiceAccount
+    name: portieris
+    namespace: default
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: portieris
+  namespace: default
+  labels:
+    app: portieris
+spec:
+  type: ClusterIP
+  ports:
+    - port: 443
+      targetPort: 8000
+      protocol: TCP
+      name: http
+  selector:
+    app: portieris
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portieris
+  namespace: default
+  labels:
+    app: portieris
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: portieris
+  template:
+    metadata:
+      labels:
+        app: portieris
+    spec:
+      serviceAccountName: portieris
+      containers:
+        - name: portieris
+          image: "docker.io/ibmcom/portieris:0.5.2"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          volumeMounts:
+          - name: portieris-certs
+            readOnly: true
+            mountPath: "/etc/certs"
+      volumes:
+      - name: portieris-certs
+        secret:
+          secretName: portieris-certs

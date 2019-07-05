@@ -1,0 +1,64 @@
+{
+  "title": "Kubernetes Secure Deployment (fork to fix issues)",
+  "description": "Workshop for KubeCon Europe (Barcelona) 2019",
+  "difficulty": "Intermediate",
+  "time": "60-85 minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "Getting started",
+        "text": "setup.md"
+      },
+      {
+        "title": "Harbor",
+        "text": "01-Installing-Harbor.md"
+      },
+      {
+        "title": "Vulnerability Scanning",
+        "text": "02-Vulnerability-Scanning.md"
+      },
+      {
+        "title": "Image Signing",
+        "text": "03-Image-Signing.md"
+      },
+      {
+        "title": "Kubesec",
+        "text": "04-Kubesec.md"
+      },
+      {
+        "title": "Image Signing continued - Portieris",
+        "text": "05-Portieris.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md",
+      "code": "preload-images.sh"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "setup/*",
+          "target": "/root/"
+        }
+      ]
+    }
+  },
+  "environment": {
+    "uilayout": "terminal",
+    "icon": "fa-kubernetes",
+    "showdashboard": true,
+    "dashboards": [
+      {
+        "name": "Harbor",
+        "port": 30002,
+        "host": "host01"
+      }
+    ]
+  },
+  "backend": {
+    "imageid": "kubernetes"
+  }
+}
