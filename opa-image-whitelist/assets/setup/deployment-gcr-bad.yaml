@@ -1,0 +1,15 @@
+---
+ apiVersion: extensions/v1beta1
+ kind: Deployment
+ metadata:
+   name: deployment-bad
+ spec:
+   replicas: 2
+   template:
+     metadata:
+       labels:
+         app: deployment-bad
+     spec:
+       containers:
+         - name: deployment-bad
+           image: gcr.io/google_containers/pause-amd64:3.0

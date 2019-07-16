@@ -28,10 +28,18 @@
 
 6. Generate the YAML used to register OPA as a ValidatingWebhookConfiguration admission controller.
 
-    `sed -i .bak "s/caBundle: .*/caBundle: $(cat ca.crt | base64 | tr -d '\n')/" ./webhook-configuration.yaml`{{execute}}
+    `sed -i.bak -e "s/caBundle: .*/caBundle: $(cat ca.crt | base64 | tr -d '\n')/" ./webhook-configuration.yaml`{{execute}}
 
 7. Label the `kube-system` and `opa` namespaces to that OPA does not apply policy to them.
 
     `kubectl label ns kube-system openpolicyagent.org/webhook=ignore`{{execute}}
 
     `kubectl label ns opa openpolicyagent.org/webhook=ignore`{{execute}}
+
+8. Register OPA as an admission controller.
+
+    `kubectl apply -f ./webhook-configuration.yaml`{{execute}}
+
+9. You can follow the OPA logs to see webhook requests being issued by the API server. (ctrl-c to exit)
+
+    `kubectl logs -l app=opa -c opa`{{execute}}
