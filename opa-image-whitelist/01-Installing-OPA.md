@@ -40,8 +40,6 @@
 
     `kubectl apply -f ./webhook-configuration.yaml`{{execute}}
 
-    `kubectl 
-
 9. You can follow the OPA logs to see webhook requests being issued by the API server. (ctrl-c to exit)
 
     `kubectl logs -l app=opa -c opa -n opa`{{execute}}
