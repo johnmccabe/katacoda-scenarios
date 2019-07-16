@@ -38,13 +38,7 @@
     "uilayout": "terminal",
     "icon": "fa-kubernetes",
     "showdashboard": true,
-    "dashboards": [
-      {
-        "name": "Harbor",
-        "port": 30002,
-        "host": "host01"
-      }
-    ],
+    "dashboards": [],
     "showvisualise": true,
     "scope": "docker run --name=scope -d --net=host --pid=host --privileged -v /var/run/docker.sock:/var/run/docker.sock:rw weaveworks/scope:1.9.1 --probe.docker=true",
     "scopePort": 4040
