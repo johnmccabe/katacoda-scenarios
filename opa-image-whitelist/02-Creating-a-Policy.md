@@ -2,7 +2,7 @@
 
 1. Store the provided policy as a configmap, view its contents with `cat image-whitelist.rego`{{execute}}. This policy will reject any `Pod`, `Deployment` or `Job` with an image that does not come from the `docker.io` registry (for either `CREATE` or `UPDATE`).
 
-    `kubectl create configmap image-whitelist --from-file=image-whitelist.rego`{{execute}}
+    `kubectl create configmap image-whitelist --from-file=image-whitelist.rego -n opa`{{execute}}
 
 2. Test the success case where we create a deployment from a whitelisted registry. `cat deployment-docker-ok.yaml`{{execute}}.
 

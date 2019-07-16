@@ -20,7 +20,7 @@
 
 4. Create a Secret to store the TLS creds for OPA.
 
-    `kubectl create secret tls opa-server --cert=server.crt --key=server.key`{{execute}}
+    `kubectl create secret tls opa-server --cert=server.crt --key=server.key -n opa`{{execute}}
 
 5. Use the provided YAML to deploy OPA as an admission controller, using an [ValidatingAdmissionWebhook](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#validatingadmissionwebhook) here for flexibility. This could also be implemented as an [ImagePolicyWebhook](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#imagepolicywebhook) if desired.
 
@@ -40,6 +40,8 @@
 
     `kubectl apply -f ./webhook-configuration.yaml`{{execute}}
 
+    `kubectl 
+
 9. You can follow the OPA logs to see webhook requests being issued by the API server. (ctrl-c to exit)
 
-    `kubectl logs -l app=opa -c opa`{{execute}}
+    `kubectl logs -l app=opa -c opa -n opa`{{execute}}
