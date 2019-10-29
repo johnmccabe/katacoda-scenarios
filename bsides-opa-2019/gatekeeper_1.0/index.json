@@ -1,0 +1,49 @@
+{
+  "title": "OPA Image Whitelisting",
+  "description": "Preventing images from non-whitelisted registries from being used in your cluster.",
+  "difficulty": "Intermediate",
+  "time": "30 minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "Getting started",
+        "text": "setup.md"
+      },
+      {
+        "title": "OPA",
+        "text": "01-Installing-OPA.md"
+      },
+      {
+        "title": "Policy Creation",
+        "text": "02-Creating-a-Policy.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md",
+      "code": "preload-images.sh"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "setup/*",
+          "target": "/root/"
+        }
+      ]
+    }
+  },
+  "environment": {
+    "uilayout": "terminal",
+    "icon": "fa-kubernetes",
+    "showdashboard": true,
+    "dashboards": [],
+    "showvisualise": true,
+    "scope": "docker run --name=scope -d --net=host --pid=host --privileged -v /var/run/docker.sock:/var/run/docker.sock:rw weaveworks/scope:1.9.1 --probe.docker=true",
+    "scopePort": 4040
+  },
+  "backend": {
+    "imageid": "kubernetes"
+  }
+}

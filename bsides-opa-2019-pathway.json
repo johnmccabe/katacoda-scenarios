@@ -1,0 +1,13 @@
+{
+    "title": "Compliance as code with OPA",
+    "description": "Demos of Open Policy Agent from BSides Belfast 2019 Conference",
+    "icon": "fa-kubernetes",
+    "courses": [
+      {
+        "course_id": "gatekeeper_1.0",
+        "title": "Gatekeeper 1.0",
+        "description": "Policy Enforcement in Kubernetes with Open Policy Agent Gatekeeper 1.0 (opa + kube-mgmt sidecar)"
+      }
+    ]
+  }
+  

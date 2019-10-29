@@ -1,0 +1,15 @@
+---
+ apiVersion: extensions/v1beta1
+ kind: Deployment
+ metadata:
+   name: deployment-docker-ok
+ spec:
+   replicas: 2
+   template:
+     metadata:
+       labels:
+         app: deployment-docker-ok
+     spec:
+       containers:
+         - name: deployment-docker-ok
+           image: docker.io/kubernetes/pause
