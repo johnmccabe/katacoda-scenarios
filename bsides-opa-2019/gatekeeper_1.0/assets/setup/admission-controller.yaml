@@ -51,7 +51,7 @@ spec:
   - name: https
     protocol: TCP
     port: 443
-    targetPort: 443
+    targetPort: 8443
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -84,7 +84,7 @@ spec:
             - "--server"
             - "--tls-cert-file=/certs/tls.crt"
             - "--tls-private-key-file=/certs/tls.key"
-            - "--addr=0.0.0.0:443"
+            - "--addr=0.0.0.0:8443"
             - "--addr=http://127.0.0.1:8181"
             - "--log-format=json-pretty"
             - "--set=decision_logs.console=true"
