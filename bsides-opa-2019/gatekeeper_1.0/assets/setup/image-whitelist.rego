@@ -3,6 +3,7 @@ package kubernetes.admission
 import data.kubernetes.namespaces  
 
 kind = {"Deployment", "Job"}
+operation = {"CREATE", "UPDATE"}
 valid_registries =  {
     "docker.io/"
 }
@@ -40,7 +41,7 @@ kind_enforced {
 
 # Check if operation recognised
 operation_enforced {
-    operations[input.request.operation]
+    operation[input.request.operation]
 }
 
 # Image from allowed registry
