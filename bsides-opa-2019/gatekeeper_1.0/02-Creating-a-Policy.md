@@ -10,7 +10,18 @@
 
     This should deploy successfully.
 
-3. Now we test the negative case where we create a deploying from a non-whitelisted registry, `gcr.io` in this case. `cat deployment-gcr-bad.yaml`{{execute}}
+3. Check that the policy has been validated, compiled and loaded into OPA.
+
+    `kubectl get configmap -n opa image-whitelist -o yaml`{{execute}}
+
+    You should see a status annotation indicating `OK`.
+
+    ```
+    metadata:
+      annotations:
+        openpolicyagent.org/policy-status: '{"status":"ok"}'
+    ```
+4. Now we test the negative case where we create a deploying from a non-whitelisted registry, `gcr.io` in this case. `cat deployment-gcr-bad.yaml`{{execute}}
 
     `kubectl apply -f ./deployment-gcr-bad.yaml`{{execute}}
 
