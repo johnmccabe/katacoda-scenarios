@@ -20,3 +20,4 @@ webhooks:
       service:
         namespace: opa
         name: opa
+

@@ -13,3 +13,4 @@
        containers:
          - name: deployment-docker-ok
            image: docker.io/kubernetes/pause
+
