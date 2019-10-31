@@ -9,6 +9,9 @@ for image in ${StringArray[@]}; do
     echo " [DONE]"
 done
 
+mkdir -p policies
+cp kafka.rego policies/
+
 # Wait for Kubernetes to be up
 # echo -n "Waiting for Docker to be ready to use" &&
 # until kubectl get pod 2>/dev/null ; do echo -n . ; sleep 1 ; done ; echo &&
