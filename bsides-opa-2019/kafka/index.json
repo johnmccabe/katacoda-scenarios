@@ -20,7 +20,7 @@
     ],
     "intro": {
       "text": "intro.md",
-      "code": "assets/setup/preload-images.sh"
+      "code": "assets/setup/setup.sh"
     },
     "finish": {
       "text": "finish.md"

@@ -9,6 +9,7 @@ for image in ${StringArray[@]}; do
     echo " [DONE]"
 done
 
+cd /root
 mkdir -p policies
 cp kafka.rego policies/
 
