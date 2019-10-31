@@ -7,6 +7,11 @@
         "course_id": "gatekeeper_1.0",
         "title": "Gatekeeper 1.0",
         "description": "Policy Enforcement in Kubernetes with Open Policy Agent Gatekeeper 1.0 (opa + kube-mgmt sidecar)"
+      },
+      {
+        "course_id": "kafka",
+        "title": "Kafka Authorization",
+        "description": "Enforce fine-grained access control over Kafka topics using Open Policy Agent"
       }
     ]
   }

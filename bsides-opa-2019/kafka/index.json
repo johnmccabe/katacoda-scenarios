@@ -1,0 +1,46 @@
+{
+  "title": "Kafka Authorization",
+  "description": "Enforce fine-grained access control over Kafka topics using Open Policy Agent",
+  "difficulty": "Beginner",
+  "time": "30 minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "Getting started",
+        "text": "setup.md"
+      },
+      {
+        "title": "OPA",
+        "text": "01-Installing-OPA.md"
+      },
+      {
+        "title": "Policy Creation",
+        "text": "02-Creating-a-Policy.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md",
+      "code": "assets/setup/preload-images.sh"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "setup/*",
+          "target": "/root/"
+        }
+      ]
+    }
+  },
+  "environment": {
+    "uilayout": "terminal",
+    "icon": "fa-docker",
+    "showdashboard": true,
+    "dashboards": []
+  },
+  "backend": {
+    "imageid": "docker"
+  }
+}
