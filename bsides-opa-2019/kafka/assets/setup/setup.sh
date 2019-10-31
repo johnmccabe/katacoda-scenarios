@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Preload docker images used in the workshop (run this first so Katacoda has time to provision Kube)
-declare -a StringArray=("confluentinc/cp-zookeeper:4.0.0-3" "openpolicyagent/opa:latest")
+declare -a StringArray=("confluentinc/cp-zookeeper:4.0.0-3" "openpolicyagent/demo-kafka:1.0" "openpolicyagent/opa:latest")
 echo "Cache Images"
 for image in ${StringArray[@]}; do
     echo -n " - ${image}"
